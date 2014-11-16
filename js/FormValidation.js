@@ -123,6 +123,61 @@
             return false;
         },
 
+        /**
+         * @author Marcel Liebgott <marcel@mliebgott.de>
+         * @since 1.00
+         *
+         * check if the length of a string is less than max
+         *
+         * @param {Array} arguments
+         * @param {Int} value
+         * @return {Boolean} boolean
+         */
+        maxLength: function(args, value){
+            console.log(args.max);
+            if(this.isString(value) && value.length <= args.max){
+                return true;
+            }
+
+            return false;
+        },
+
+        /**
+         * @author Marcel Liebgott <marcel@mliebgott.de>
+         * @since 1.00
+         *
+         * check if the length of a string is greater than max
+         *
+         * @param {Array} arguments
+         * @param {Int} value
+         * @return {Boolean} boolean
+         */
+        minLength: function(args, value){
+            if(this.isString(value) && value.length >= args.min){
+                return true;
+            }
+
+            return false;
+        },
+
+        /**
+         * @author Marcel Liebgott <marcel@mliebgott.de>
+         * @since 1.00
+         *
+         * check if the length of a string is between min and max
+         *
+         * @param {Array} arguments
+         * @param {Int} value
+         * @return {Boolean} boolean
+         */
+        rangeLength: function(args, value){
+            if(this.isString(value) && value.length <= args.max && value.length >= args.min){
+                return true;
+            }
+
+            return false;
+        },
+
 		/**
 		 * @author Marcel Liebgott <marcel@mliebgott.de>
 		 * @since 1.00
@@ -136,19 +191,40 @@
 			var name = $(input).attr("name");
 			var id = $(input).attr("id");
 			var validate = $(input).data("validate");
-            console.log("value: " + input.value);
             var value = input.value.length > 0 ? input.value : null;
-
 			var args = $.FormValidation.prepareArguments(input);
 
 			var res = false;
 
 			if(args !== null && args !== "" && typeof args !== "undefined"){
-                console.log($.type(validate));
 				switch(validate.toLowerCase()){
 					case "range":
-							res = $.FormValidation.range(args.range, value);
+						res = $.FormValidation.range(args.range, value);
 						break;
+                    case "max":
+                        res = $.FormValidation.maxValue(args.maxValue, value);
+                        break;
+                    case "min":
+                        res = $.FormValidation.minValue(args.minValue, value);
+                        break;
+                    case "isboolean":
+                        res = $.FormValidation.isBoolean(value);
+                        break;
+                    case "isstring":
+                        res = $.FormValidation.isString(value);
+                        break;
+                    case "isinteger":
+                        res = $.FormValidation.isInterger(value);
+                        break;
+                    case "maxlength":
+                        res = $.FormValidation.maxLength(args.maxLength, value);
+                        break;
+                    case "minlength":
+                        res = $.FormValidation.minLength(args.minLength, value);
+                        break;
+                    case "rangelength":
+                        res = $.FormValidation.rangeLength(args.rangeLength, value);
+                        break;
 				}
 
                 console.log("Result: " + res);
@@ -234,7 +310,17 @@
 				range: {
 					min: min,
 					max: max
-				}
+				},
+                maxLength: {
+                    max: max
+                },
+                minValue: {
+                    min: min
+                },
+                rangeLength: {
+                    min: min,
+                    max: max
+                }
 			};
 
 			console.log(settings);
