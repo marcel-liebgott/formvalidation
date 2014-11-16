@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>jQuery Formular Validation</title>
+
+		<link rel="stylesheet" type="text/css" href="./css/style.css"></style>
+
+		<script type="text/JavaScript" src="./js/jquery-2.1.1.min.js"></script>
+		<script type="text/JavaScript" src="./js/FormValidation.js"></script>
+	</head>
+	<body>
+		<h1>FormValidtion.js</h1>
+		<div class="contaner description">
+
+		</div>
+		<div class="container">
+			<h3>Formulare Validieren</h3>
+			<div class="border padding">
+				<form type="POST" action="#" id="1" data-validation="blur">
+					<input type="number" name="min" data-validate="range" data-min="4" data-max="6"><br>
+					<input type="text" name="max" data-validate="max" data-min="4">
+				</form>
+
+				<br><br>
+
+				<form type="POST" action="#" id="2" data-validation="onsubmit">
+					<input type="number" name="min2" data-validate="range" data-min="4" data-max="6"><br>
+					<input type="text" name="max2" data-validate="max" data-min="4">
+					<br>
+					<input type="submit" value="senden">
+				</form>
+			</div>
+		</div>
+
+		<div class="footer container">
+			<p>
+				&copy; 2014 <a href="http://www.mliebgott.de" target="_blank" title="mliebgott.de">mliebgott.de</a>
+			</p>
+		</div>
+		<script type="text/JavaScript">
+			$.FormValidation.validate();
+		</script>
+	</body>
+</html>
