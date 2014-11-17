@@ -54,3 +54,9 @@ input{
 	margin-bottom: 10px;
 	border-color: lightgray;
 }
+
+.error-msg{
+	font-size: 11px;
+	color: red;
+	margin-button: 0px;
+}
